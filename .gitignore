@@ -7,6 +7,8 @@
 #JS files
 /dist
 
+/yarn-error.log
+
 /.idea
 
 /.env
