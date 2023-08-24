@@ -1,1 +1,1 @@
-# nodej_sessions_redis
+# Repo for realisation session storage using NODE JS + REDIS
