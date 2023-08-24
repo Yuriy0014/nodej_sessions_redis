@@ -1,25 +1,14 @@
-import {Request, Response,Router} from 'express';
+import {Router} from 'express';
+import {authController} from "../controller/auth-controller";
+import {authMW} from "../mw/auth-mw";
+
 export const authRouter = Router({})
 
 
-authRouter.post('/login', (req: Request, res: Response) => {
+authRouter.get('/', authController.home)
 
-    const {username, password} = req.body
-    // Check if the credentials are correct
-    //..
-    // assume that credentials are correct
+authRouter.post('/login', authController.login)
 
-    req.session.clientId = 'abc123'
-    req.session.myNum = 5
-
-    res.json('you are now logged in')
-})
-
-// 5 plug in all routes that the user can only access if logged in
-authRouter.post('/profile', (req: Request, res: Response) => {
-    res.json(req.session)
-})
-
-authRouter.get('/', (req: Request, res: Response) => {
-    res.send('Hello World!')
-})
+authRouter.post('/profile',
+    authMW,
+    authController.profile)
