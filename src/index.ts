@@ -15,6 +15,9 @@ import RedisStore from "connect-redis"
 
 const app = express()
 
+const jsonBodyMW = express.json()
+app.use(jsonBodyMW)
+
 // if you run behind the proxy (kubernetes, nginx)
 app.set('trust proxy', 1)
 const port = 3000
@@ -48,7 +51,7 @@ app.use(session({
 
 app.post('/login', (req: Request, res: Response) => {
 
-    const {email, password} = req.body
+    const {username, password} = req.body
 
     // Check if the credentials are correct
     //..
