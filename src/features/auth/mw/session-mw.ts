@@ -1,19 +1,8 @@
-// 1 Configure our redis
-const redisClient = redis.createClient({
-    socket: {
-        port: 6379,
-        host: 'localhost'
-    }
-})
-redisClient.connect().catch(console.error)
-
-
-// 2 Configure our session MW
-
-
+import {redisStore} from "../../../helpers/redis-config/redis-config";
+import session from 'express-session';
 
 export const sessionMW = session({
-    store: new RedisStore({client: redisClient}),
+    store: redisStore,
     secret: 'MySecret',
     saveUninitialized: false,
     resave: false,
