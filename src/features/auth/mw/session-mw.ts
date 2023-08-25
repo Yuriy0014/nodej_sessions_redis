@@ -6,6 +6,7 @@ export const sessionMW = session({
     secret: 'MySecret',
     saveUninitialized: false,
     resave: false,
+    name: 'SessionID',
     cookie: {
         secure: false, // if true: only transmit cookie over https,
         httpOnly: true, // if true: prevents client side JS from reading cookie
