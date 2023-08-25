@@ -9,6 +9,6 @@ authRouter.get('/', authController.home)
 
 authRouter.post('/login', authController.login)
 
-authRouter.post('/profile',
+authRouter.get('/profile',
     authMW,
     authController.profile)
