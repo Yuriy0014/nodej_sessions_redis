@@ -7,11 +7,13 @@ import {STATUSES_HTTP} from "../../../helpers/statuses_http";
 
 export const authMW = ((req: Request, res: Response, next: NextFunction) => {
     if (!req.session || !req.session.clientId) {
-        const err = new Error('Yoy shall not pass');
-        res.status(STATUSES_HTTP.UNAUTHORIZED_401).json({
+        const error = new Error('Yoy shall not pass')
+        const answer = {
             message: 'Unfortunately, you are not authenticated',
-            errorText: err
-        })
+            errorText: error.toString()
+        }
+        res.status(STATUSES_HTTP.UNAUTHORIZED_401).json(answer)
+        return
     }
     next();
 });
