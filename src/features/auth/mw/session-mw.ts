@@ -1,4 +1,4 @@
-import {redisStore} from "../../../helpers/redis-config/redis-config";
+import {redisStore} from "../../../db/redis-config/redis-config";
 import session from 'express-session';
 
 export const sessionMW = session({
