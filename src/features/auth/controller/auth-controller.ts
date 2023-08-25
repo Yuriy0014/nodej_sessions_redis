@@ -7,11 +7,12 @@ import {AuthBodyModel} from "../types/auth-types";
 export const authController = {
 
     async login(req: AuthReqWithBody<AuthBodyModel>, res: Response) {
-
+        // basic validation
         const {username, password} = req.body
-        // Check if the credentials are correct
-        //
-        // assume that credentials are correct
+
+        if (!username || !password) {
+            res.status(STATUSES_HTTP.BAD_REQUEST_400).json({message: "You did not provided username or password"})
+        }
 
         req.session.clientId = 'abc123'
         req.session.myNum = 5
@@ -23,7 +24,7 @@ export const authController = {
         res.status(STATUSES_HTTP.OK_200).json(req.session)
     },
 
-    async home(req: Request, res: Response){
+    async home(req: Request, res: Response) {
         res.status(STATUSES_HTTP.OK_200).send('Hello World!')
     }
 }
